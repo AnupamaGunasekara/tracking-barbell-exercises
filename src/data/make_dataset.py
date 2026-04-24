@@ -21,7 +21,7 @@ f = files[0]
 
 participant = f.split("-")[0].replace(data_path, "")
 label = f.split("-")[1]
-category = f.split("-")[2].rstrip("2")
+category = f.split("-")[2].rstrip("23")
 
 # --------------------------------------------------------------
 # Read all files
@@ -35,7 +35,7 @@ gyro_set = 1
 for f in files:
     participant = f.split("-")[0].replace(data_path, "")
     label = f.split("-")[1]
-    category = f.split("-")[2].rstrip("2").rstrip("_MetaWear_2019")
+    category = f.split("-")[2].rstrip("23").rstrip("_MetaWear_2019")
     df = pd.read_csv(f)
     df["participant"] = participant
     df["label"] = label
@@ -79,7 +79,7 @@ def read_meta_motion_data(files):
     for f in files:
         participant = f.split("-")[0].replace(data_path, "")
         label = f.split("-")[1]
-        category = f.split("-")[2].rstrip("2").rstrip("_MetaWear_2019")
+        category = f.split("-")[2].rstrip("23").rstrip("_MetaWear_2019")
         df = pd.read_csv(f)
         df["participant"] = participant
         df["label"] = label
