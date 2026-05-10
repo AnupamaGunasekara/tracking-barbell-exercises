@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barbell Exercise Tracker - ML Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <h1 class="main-title">SMARTER TRAINING.<br>STRONGER RESULTS.</h1>
+                <p class="subtitle">MACHINE LEARNING FOR FITNESS TRACKING</p>
+            </div>
+            <div class="live-indicator">
+                <span class="live-dot"></span>
+                <span>LIVE</span>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Left Section -->
+            <div class="left-section">
+                <!-- Exercise Icons -->
+                <div class="exercise-menu">
+                    <div class="exercise-icon active" data-exercise="bench">
+                        <svg viewBox="0 0 50 50" fill="currentColor">
+                            <rect x="15" y="20" width="20" height="4"/>
+                            <rect x="10" y="18" width="2" height="8"/>
+                            <rect x="38" y="18" width="2" height="8"/>
+                        </svg>
+                        <span>BENCH PRESS</span>
+                    </div>
+                    <div class="exercise-icon" data-exercise="squat">
+                        <svg viewBox="0 0 50 50" fill="currentColor">
+                            <circle cx="25" cy="15" r="4"/>
+                            <path d="M25 20 L25 32 M20 28 L25 32 L30 28 M20 32 L20 42 M30 32 L30 42"/>
+                        </svg>
+                        <span>SQUAT</span>
+                    </div>
+                    <div class="exercise-icon" data-exercise="deadlift">
+                        <svg viewBox="0 0 50 50" fill="currentColor">
+                            <circle cx="25" cy="12" r="3"/>
+                            <path d="M25 15 L25 28 M20 22 L30 22 M22 28 L22 40 M28 28 L28 40"/>
+                        </svg>
+                        <span>DEADLIFT</span>
+                    </div>
+                    <div class="exercise-icon" data-exercise="row">
+                        <svg viewBox="0 0 50 50" fill="currentColor">
+                            <circle cx="25" cy="15" r="3"/>
+                            <path d="M25 18 L25 30 M20 24 L32 24 M22 30 L22 40 M28 30 L28 40"/>
+                        </svg>
+                        <span>ROW</span>
+                    </div>
+                    <div class="exercise-icon" data-exercise="ohp">
+                        <svg viewBox="0 0 50 50" fill="currentColor">
+                            <circle cx="25" cy="15" r="3"/>
+                            <path d="M25 18 L25 30 M18 22 L32 22 M22 30 L22 40 M28 30 L28 40"/>
+                        </svg>
+                        <span>OVERHEAD PRESS</span>
+                    </div>
+                </div>
+
+                <!-- Athlete Image Placeholder -->
+                <div class="athlete-display">
+                    <div class="sensor-point sensor-shoulder"></div>
+                    <div class="sensor-point sensor-elbow"></div>
+                    <div class="sensor-point sensor-wrist"></div>
+                    <div class="sensor-point sensor-knee"></div>
+                    <div class="sensor-point sensor-ankle"></div>
+                    <div class="sensor-label">WEARABLE<br>SENSORS</div>
+                </div>
+
+                <!-- Accuracy Badge -->
+                <div class="accuracy-badge">
+                    <div class="accuracy-value">99.7%</div>
+                    <div class="accuracy-label">ACCURACY</div>
+                    <div class="stars">★★★★★</div>
+                </div>
+
+                <!-- Bottom Features -->
+                <div class="features-bar">
+                    <div class="feature">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="5" y="2" width="14" height="20" rx="2"/>
+                            <line x1="12" y1="18" x2="12" y2="18"/>
+                        </svg>
+                        <div>
+                            <div class="feature-title">REAL-TIME</div>
+                            <div class="feature-subtitle">TRACKING</div>
+                        </div>
+                    </div>
+                    <div class="feature">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+                        </svg>
+                        <div>
+                            <div class="feature-title">ADVANCED</div>
+                            <div class="feature-subtitle">ANALYTICS</div>
+                        </div>
+                    </div>
+                    <div class="feature">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/>
+                            <circle cx="12" cy="12" r="3"/>
+                            <line x1="12" y1="2" x2="12" y2="6"/>
+                            <line x1="12" y1="18" x2="12" y2="22"/>
+                        </svg>
+                        <div>
+                            <div class="feature-title">MACHINE</div>
+                            <div class="feature-subtitle">LEARNING</div>
+                        </div>
+                    </div>
+                    <div class="feature">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                        </svg>
+                        <div>
+                            <div class="feature-title">HIGH</div>
+                            <div class="feature-subtitle">ACCURACY</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Section - Analytics Dashboard -->
+            <div class="right-section">
+                <!-- Sensor Analytics -->
+                <div class="panel sensor-panel">
+                    <h3>SENSOR ANALYTICS</h3>
+                    <div class="sensor-title">ACCELEROMETER (m/s²)</div>
+                    <canvas id="accelerometerChart"></canvas>
+                </div>
+
+                <div class="panel sensor-panel">
+                    <div class="sensor-title">GYROSCOPE (°/s)</div>
+                    <canvas id="gyroscopeChart"></canvas>
+                    <div class="gyro-values">
+                        <div><span class="axis-x">X</span> 12.4°/s</div>
+                        <div><span class="axis-y">Y</span> -8.7°/s</div>
+                        <div><span class="axis-z">Z</span> 15.3°/s</div>
+                    </div>
+                </div>
+
+                <!-- Confusion Matrix -->
+                <div class="panel confusion-panel">
+                    <h3>CONFUSION MATRIX</h3>
+                    <div class="confusion-matrix">
+                        <div class="matrix-labels">
+                            <div class="label-top">
+                                <span>BENCH</span>
+                                <span>DEAD</span>
+                                <span>OHP</span>
+                                <span>REST</span>
+                                <span>ROW</span>
+                                <span>SQUAT</span>
+                            </div>
+                            <div class="label-left">
+                                <span>BENCH</span>
+                                <span>DEAD</span>
+                                <span>OHP</span>
+                                <span>REST</span>
+                                <span>ROW</span>
+                                <span>SQUAT</span>
+                            </div>
+                        </div>
+                        <div class="matrix-grid">
+                            <div class="cell highest">175</div>
+                            <div class="cell high">0</div>
+                            <div class="cell high">0</div>
+                            <div class="cell high">0</div>
+                            <div class="cell high">0</div>
+                            <div class="cell high">0</div>
+                            
+                            <div class="cell high">0</div>
+                            <div class="cell highest">172</div>
+                            <div class="cell high">0</div>
+                            <div class="cell high">0</div>
+                            <div class="cell high">0</div>
+                            <div class="cell high">0</div>
+                            
+                            <div class="cell low">1</div>
+                            <div class="cell high">0</div>
+                            <div class="cell highest">174</div>
+                            <div class="cell high">0</div>
+                            <div class="cell high">0</div>
+                            <div class="cell high">0</div>
+                            
+                            <div class="cell high">0</div>
+                            <div class="cell high">0</div>
+                            <div class="cell high">0</div>
+                            <div class="cell highest">128</div>
+                            <div class="cell high">0</div>
+                            <div class="cell high">0</div>
+                            
+                            <div class="cell high">0</div>
+                            <div class="cell high">0</div>
+                            <div class="cell high">0</div>
+                            <div class="cell high">0</div>
+                            <div class="cell highest">142</div>
+                            <div class="cell high">0</div>
+                            
+                            <div class="cell high">0</div>
+                            <div class="cell high">0</div>
+                            <div class="cell high">0</div>
+                            <div class="cell high">0</div>
+                            <div class="cell high">0</div>
+                            <div class="cell highest">175</div>
+                        </div>
+                        <div class="matrix-axis">PREDICTED LABEL</div>
+                    </div>
+                </div>
+
+            
+
+                <!-- Metrics -->
+                <div class="metrics-row">
+                    <div class="metric-card">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                            <polyline points="22 4 12 14.01 9 11.01"/>
+                        </svg>
+                        <div>
+                            <div class="metric-label">ACCURACY</div>
+                            <div class="metric-value cyan">99.7%</div>
+                        </div>
+                    </div>
+                    <div class="metric-card">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+                        </svg>
+                        <div>
+                            <div class="metric-label">PRECISION</div>
+                            <div class="metric-value cyan">99.6%</div>
+                        </div>
+                    </div>
+                    <div class="metric-card">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                        </svg>
+                        <div>
+                            <div class="metric-label">RECALL</div>
+                            <div class="metric-value orange">99.6%</div>
+                        </div>
+                    </div>
+                    <div class="metric-card">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/>
+                            <polyline points="12 6 12 12 16 14"/>
+                        </svg>
+                        <div>
+                            <div class="metric-label">F1 SCORE</div>
+                            <div class="metric-value purple">99.6%</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="dots"></div>
+            <div class="footer-text">DATA. INSIGHT. PERFORMANCE. BUILT WITH MACHINE LEARNING.</div>
+            <div class="dots"></div>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
